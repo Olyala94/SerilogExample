@@ -1,7 +1,11 @@
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
 builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -12,9 +16,9 @@ builder.Services.AddSwaggerGen();
 Log.Logger = new LoggerConfiguration()
 .MinimumLevel.Information()
 .WriteTo.File("logs/myBeautifulLog-.txt", rollingInterval: RollingInterval.Day)
-.ReadFrom.Configuration(builder.Configuration).CreateLogger();
+ .ReadFrom.Configuration(builder.Configuration).CreateLogger();
 
-builder.Host.UseSerilog();
+builder.Host.UseSerilog();  
 
 var app = builder.Build();
 
